@@ -46,7 +46,16 @@ app.use(accountRoute);
 // app.use(accountIPFS);
 app.use(prescriptionReute);
 
-app.listen(3000, ()=> console.log(`Server started at port`));
+app.set('port', (process.env.PORT || 3000))
+
+app.get('/', function(request, response) {
+    response.send('Hello World!')
+})
+
+app.listen(app.get('port'), function() {
+    console.log("Node app is running at localhost:" + app.get('port'))
+})
+// app.listen(3000, ()=> console.log(`Server started at port`));
 // const uri = `mongodb://localhost:32768/DucSkt`;
 // mongoose.connect(uri, {
 //     useNewUrlParser: true,
