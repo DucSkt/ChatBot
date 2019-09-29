@@ -53,7 +53,7 @@ app.get('/', function(request, response) {
 })
 
 // app.listen(3000, ()=> console.log(`Server started at port`));
-const uri = `mongodb://localhost:27017/DucSkt`;
+const uri = `mongodb://localhost/DucSkt`;
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useCreateIndex: true
