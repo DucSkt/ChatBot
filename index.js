@@ -49,18 +49,19 @@ app.use(prescriptionReute);
 app.set('port', (process.env.PORT || 5000))
 
 app.get('/', function(request, response) {
-    response.send('Duc SKt')
+    response.send('Hello World!')
 })
 
-app.listen(app.get('port'), function() {
-    console.log("Node app is running at localhost:" + app.get('port'))
-})
 // app.listen(3000, ()=> console.log(`Server started at port`));
-// const uri = `mongodb://localhost:32768/DucSkt`;
-// mongoose.connect(uri, {
-//     useNewUrlParser: true,
-//     useCreateIndex: true
-// });
-// mongoose.connection.once('open', ()=>{
-//     app.listen(3000, ()=> console.log(`Server started at port`));
+const uri = `mongodb://localhost:27017/DucSkt`;
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+});
+mongoose.connection.once('open', ()=>{
+    app.listen(app.get('port'), ()=> console.log(`Server started at port ${app.get('port')}`));
+})
+
+// app.listen(app.get('port'), function() {
+//     console.log("Node app is running at localhost:" + app.get('port'))
 // })
