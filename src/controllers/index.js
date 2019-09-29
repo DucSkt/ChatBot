@@ -11,8 +11,8 @@ const HashIPFS = require('../models/HashIPFSTemp');
 
 const User = require('../models/User');
 var QRCode = require('qrcode');
-var Gearman = require('node-gearman');
-var gearman = new Gearman('localhost', 32772);
+// var Gearman = require('node-gearman');
+// var gearman = new Gearman('localhost', 32768);
 var formatCurrency = require('number-format.js');
 const _ = require('lodash');
 
@@ -67,7 +67,7 @@ route.get('/xac-nhan-ipfs/:userID',async(req, res) => {
         message: 'cannot_generate_qrcode'
     });
     console.log({ qrCodeGenerate })
-    gearman.submitJob('SUBMIT_IPFS', JSON.stringify({ userID: userID }));
+    // gearman.submitJob('SUBMIT_IPFS', JSON.stringify({ userID: userID }));
     return res.json({
         error: false,
         data: qrCodeGenerate

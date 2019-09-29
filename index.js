@@ -46,11 +46,12 @@ app.use(accountRoute);
 // app.use(accountIPFS);
 app.use(prescriptionReute);
 
-const uri = `mongodb://150.95.113.214/DucSkt`;
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useCreateIndex: true
-});
-mongoose.connection.once('open', ()=>{
-    app.listen(3000, ()=> console.log(`Server started at port`));
-})
+app.listen(3000, ()=> console.log(`Server started at port`));
+// const uri = `mongodb://localhost:32768/DucSkt`;
+// mongoose.connect(uri, {
+//     useNewUrlParser: true,
+//     useCreateIndex: true
+// });
+// mongoose.connection.once('open', ()=>{
+//     app.listen(3000, ()=> console.log(`Server started at port`));
+// })
