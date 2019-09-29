@@ -46,7 +46,7 @@ app.use(accountRoute);
 // app.use(accountIPFS);
 app.use(prescriptionReute);
 
-app.set('port', (process.env.PORT || 3000))
+app.set('port', (process.env.PORT || 5000))
 
 app.get('/', function(request, response) {
     response.send('Hello World!')
