@@ -174,13 +174,6 @@ route.get('/danh-sach-bac-si-truc-thuoc', async(req, res) => {
     res.render('list-doctor', { listDoctor, moment });
 })
 
-route.get('/danh-sach-bac-si-truc-thuoc-mobile', async(req, res) => {
-    return res.json({
-        error: false,
-        data: await Doctor.find({})
-    });
-})
-
 route.post('/cap-nhat-ho-so-giao-dich', async(req, res) =>{
     const { patientID, doctorID, totalPrice, description } = req.body;
     try {
