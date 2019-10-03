@@ -3,8 +3,8 @@ const route = express.Router();
 const bodyParser = require('body-parser');
 const { hash, compare } = require('bcrypt');
 const moment = require('moment');
-// var Gearman = require('node-gearman');
-// var gearman = new Gearman('localhost', 32768);
+var Gearman = require('node-gearman');
+var gearman = new Gearman('localhost', 4730);
 const IPFS = require('ipfs-mini');
 const ipfs = new IPFS({host: 'ipfs.infura.io', port: 5001, protocol: 'https'});
 
@@ -48,8 +48,8 @@ route.post('/register-patient', async (req, res) =>{
             error: true,
             message: 'cannot_insert_user'
         });
-        // gearman.submitJob('CREATE_WALLET_PATIENT', JSON.stringify({ userID: userSave._id }));
-        // gearman.submitJob('CREATE_WALLET_PATIENT', JSON.stringify({ userID: userSave._id }));
+        gearman.submitJob('CREATE_WALLET_PATIENT', JSON.stringify({ userID: userSave._id }));
+        gearman.submitJob('CREATE_WALLET_PATIENT', JSON.stringify({ userID: userSave._id }));
         return res.json({
             error: false,
             data: userSave
@@ -189,7 +189,7 @@ route.post('/cap-nhat-ho-so-giao-dich', async(req, res) =>{
             error: true,
             message: 'cannot_save_prescription'
         });
-        // gearman.submitJob('SUBMIT_IPFS', JSON.stringify({ userID: patientID }));
+         gearman.submitJob('SUBMIT_IPFS', JSON.stringify({ userID: patientID }));
         return res.json({
             error: false,
             data: savePrescription

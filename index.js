@@ -23,7 +23,7 @@ app.use(cors({}))
  * IMPORT INTERNAL
  */
 const accountRoute = require('./src/controllers/users');
-// const accountIPFS = require('./src/controllers');
+const accountIPFS = require('./src/controllers');
 const prescriptionReute = require('./src/controllers/prescriptions');
 /**
  * APP CONFIG
@@ -43,7 +43,7 @@ app.get('/tao-ho-so', (req, res) => {
     res.render('index');
 })
 app.use(accountRoute);
-// app.use(accountIPFS);
+app.use(accountIPFS);
 app.use(prescriptionReute);
 
 app.set('port', (process.env.PORT || 5000))

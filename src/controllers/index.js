@@ -11,8 +11,8 @@ const HashIPFS = require('../models/HashIPFSTemp');
 
 const User = require('../models/User');
 var QRCode = require('qrcode');
-// var Gearman = require('node-gearman');
-// var gearman = new Gearman('localhost', 32768);
+var Gearman = require('node-gearman');
+var gearman = new Gearman('localhost', 4730);
 var formatCurrency = require('number-format.js');
 const _ = require('lodash');
 
@@ -51,7 +51,7 @@ const Transaction = require('../models/Transactions');
 //     // if (err) {
 //     // return console.log(err);
 //     // }
-    
+//
 //     // console.log('HASH:=', hash);
 //     // });
 // })
@@ -67,7 +67,7 @@ route.get('/xac-nhan-ipfs/:userID',async(req, res) => {
         message: 'cannot_generate_qrcode'
     });
     console.log({ qrCodeGenerate })
-    // gearman.submitJob('SUBMIT_IPFS', JSON.stringify({ userID: userID }));
+     gearman.submitJob('SUBMIT_IPFS', JSON.stringify({ userID: userID }));
     return res.json({
         error: false,
         data: qrCodeGenerate
@@ -132,7 +132,7 @@ route.get('/submit-verify-info/:userID', async(req, res) => {
                 message: err.message
             })
         } else {
-            
+
             /** CAP NHAT STATUS USER - DA LUU TRU TREN BLOCKCHAIN (status) */
             // 0: out hospital
             let updateStatus = await User.findByIdAndUpdate(userID, {
@@ -154,6 +154,7 @@ route.get('/submit-verify-info/:userID', async(req, res) => {
  * Cannot apply for each USER
  */
 /**GET DATA IPI || txHash -> ipfsHashString -> ObjData */
+// ducskt get dao dịch thì lưu trên block chain
 route.get('/get-transactions', async(req, res) => {
     const { txHash } = req.params;
 
