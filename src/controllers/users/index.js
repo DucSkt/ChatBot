@@ -25,6 +25,29 @@ route.get('/sign-up', (req, res) => {
     res.render('register');
 });
 
+route.get('/findByIdUser/:Username', async(req, res) => {
+    const { Username } = req.params;
+
+    const checkExist = await User.findOne({username: Username});
+    if (!checkExist) return res.json({
+        error: true,
+        message: 'user_not_exist'
+    });
+
+    return res.json({
+        error: false,
+        data: checkExist
+    });
+})
+
+route.get('/findAllUser', async(req, res) => {
+    const checkExist = await User.find()
+    return res.json({
+        error: false,
+        data: checkExist
+    });
+})
+
 route.post('/register-patient', async (req, res) =>{
     const { username, password, address, phone, birthday, fullname,
         age, weight, height, acitve
