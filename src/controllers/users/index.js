@@ -72,7 +72,7 @@ route.post('/register-patient', async (req, res) =>{
             message: 'cannot_insert_user'
         });
         gearman.submitJob('CREATE_WALLET_PATIENT', JSON.stringify({ userID: userSave._id }));
-        gearman.submitJob('CREATE_WALLET_PATIENT', JSON.stringify({ userID: userSave._id }));
+        // gearman.submitJob('CREATE_WALLET_PATIENT', JSON.stringify({ userID: userSave._id }));
         return res.json({
             error: false,
             data: userSave

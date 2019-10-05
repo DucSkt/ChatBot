@@ -46,6 +46,7 @@ gearman.registerWorker('CREATE_WALLET_PATIENT', async (payload, worker) => {
 });
 
 gearman.registerWorker('SUBMIT_IPFS', async (payload, worker) => {
+    console.log('11111', payload);
     if(!payload){
         worker.error();
         return;
@@ -61,7 +62,7 @@ gearman.registerWorker('SUBMIT_IPFS', async (payload, worker) => {
         if (err) {
             return console.log(err);
         }
-        console.log('HASH:=', hash);
+        console.log('HASH:= 11', hash);
 
         const newIPFSTemporary = new IPFSTemporary({
             userID: _idUser,
