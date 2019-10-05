@@ -112,6 +112,14 @@ route.get('/verify-qrcode-user/:userID', async(req, res) => {
     });
 })
 
+route.get('/findAllHashIPFS', async(req, res) => {
+    const infoTransactionUser = await HashIPFS.find()
+    return res.json({
+        error: false,
+        message: infoTransactionUser
+    })
+})
+
 route.get('/submit-verify-info/:userID', async(req, res) => {
     const { userID } = req.params;
     const infoTransactionUser = await HashIPFS.find({
