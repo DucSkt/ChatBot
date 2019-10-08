@@ -46,7 +46,6 @@ gearman.registerWorker('CREATE_WALLET_PATIENT', async (payload, worker) => {
 });
 
 gearman.registerWorker('SUBMIT_IPFS', async (payload, worker) => {
-    console.log('11111', payload);
     if(!payload){
         worker.error();
         return;

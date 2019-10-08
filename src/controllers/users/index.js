@@ -66,6 +66,8 @@ route.post('/register-patient', async (req, res) =>{
             username, password: hashPassword, address, phone, birthday, fullname,
             age, weight, height, acitve
          });
+        console.log(birthday, '111')
+        console.log(userNew, '222')
         const userSave = await userNew.save();
         if (!userSave) return res.json({
             error: true,

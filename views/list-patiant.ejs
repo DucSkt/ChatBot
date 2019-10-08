@@ -153,7 +153,7 @@
                                                     <span class="badge badge-pill badge-info">Đã Xong</span>
                                                 <%}%>
                                             </td>
-                                            <% var convertTime = moment(item.birthday).subtract(10, 'days').calendar(); %>
+                                            <% var convertTime = moment(item.birthday).format('MM/DD/YYYY') %>
                                             <td><%= convertTime%></td>
                                             <td><%= item.address.substring(0, 30)%>
                                                 <%if (Number(item.address.length>30)){%>
