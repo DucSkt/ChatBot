@@ -127,10 +127,19 @@ route.get('/submit-verify-info/:userID', async(req, res) => {
     }).sort({ createAt: -1 });
     console.log({ infoTransactionUser })
     const infoUserLatest = infoTransactionUser[0];
+    const transactions = await Transaction.find({
+        patientID: infoUserLatest.userID
+    }).sort({ createAt: -1 })
+        .populate('patientID')
+        .populate('doctorID')
+        .populate('prescriptionID');
+
+    const pushBlockChain = ` Ten benh nhan: ${transactions[0].patientID.fullname}, Benh: ${transactions[0].prescriptionID.title}, Ten bac si: ${transactions[0].doctorID.fullname}, Tien thuoc: ${transactions[0].totalPrice}`
+
     /**
      * PUSH BLOCKCHAIN
      */
-    contractService.addIPFSHash(infoUserLatest.ipfsHash, {
+    contractService.addIPFSHash(pushBlockChain, {
         address: DATA_DEFAULT.contract.owner.address,
         private: DATA_DEFAULT.contract.owner.private
     }, DATA_DEFAULT.contract.address, 'setHash', async (err, hash) => {

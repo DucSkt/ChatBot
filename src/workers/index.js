@@ -55,7 +55,6 @@ gearman.registerWorker('SUBMIT_IPFS', async (payload, worker) => {
                                 .populate('patientID')
                                 .populate('doctorID')
                                 .populate('prescriptionID');
-    console.log({ infoTransaction })
 //    const randomData = '8803cf48b8805198dbf85b2e0d514320_khanhney'; // random bytes for testing
     ipfs.add(JSON.stringify(infoTransaction), async (err, hash) => {
         if (err) {
@@ -67,6 +66,7 @@ gearman.registerWorker('SUBMIT_IPFS', async (payload, worker) => {
             userID: _idUser,
             ipfsHash: hash
         });
+
         const saveIPFSString = await newIPFSTemporary.save();
         console.log({ saveIPFSString })
         worker.end();
