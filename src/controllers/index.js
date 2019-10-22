@@ -156,6 +156,8 @@ route.get('/submit-verify-info/:userID', async(req, res) => {
                 status: 0
             });
 
+            console.log(hash, '1111111111111')
+            
             return res.json({
                 error: false,
                 message: 'push_blockchain_success',
